@@ -28,21 +28,27 @@ document.addEventListener("DOMContentLoaded", function() {
         video.height = 200;
         video.style.display = "none"; // On cache la vidéo initialement
 
-        card.addEventListener("mouseenter", function(event) {
+        // Charger la vidéo
+        video.load();
+
+        // Ajouter un événement pour démarrer la lecture de la vidéo lors du survol de la carte
+        card.addEventListener("mouseover", function(event) {
             event.preventDefault();
             image.style.display = "none"; // On cache l'image
             imageHolder.appendChild(video); // Ajouter la vidéo à la place de l'image
             video.style.display = "block"; // On affiche la vidéo
-            video.play(); // On démarre la lecture de la vidéo
+            video.play(); // On démarre la lecture de la vidéo automatiquement
         });
 
-        card.addEventListener("mouseleave", function(event) {
+        // Ajouter un événement pour mettre en pause la vidéo et afficher l'image lorsque le curseur quitte la carte
+        card.addEventListener("mouseout", function(event) {
             event.preventDefault();
-            video.style.display = "none"; // On cache la vidéo
             video.pause(); // On met en pause la vidéo
+            video.style.display = "none"; // On cache la vidéo
             image.style.display = "block"; // On affiche à nouveau l'image
         });
 
+        // Ajouter un événement pour la fonctionnalité de clic
         card.addEventListener("click", function(event) {
             event.preventDefault();
             var isShowing = this.classList.contains("show");
