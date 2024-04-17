@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="fichier.css/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,200,300,600,700,900" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <script src="script.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+
+document.addEventListener("DOMContentLoaded", function() {
+    var zindex = 10;
+
+    var cards = document.querySelectorAll(".card");
+
+    cards.forEach(function(card) {
+        var imageHolder = card.querySelector(".card__image-holder");
+        var image = card.querySelector(".card__image");
+        var videoURL = image.getAttribute("data-video-url");
+        var video = document.createElement("video");
+        video.src = videoURL;
+        video.controls = true;
+        video.width = 300;
+        video.height = 200;
+        video.style.display = "none"; // On cache la vidéo initialement
+
+        card.addEventListener("mouseenter", function(event) {
+            event.preventDefault();
+            image.style.display = "none"; // On cache l'image
+            imageHolder.appendChild(video); // Ajouter la vidéo à la place de l'image
+            video.style.display = "block"; // On affiche la vidéo
+            video.play(); // On démarre la lecture de la vidéo
+        });
+
+        card.addEventListener("mouseleave", function(event) {
+            event.preventDefault();
+            video.style.display = "none"; // On cache la vidéo
+            video.pause(); // On met en pause la vidéo
+            image.style.display = "block"; // On affiche à nouveau l'image
+        });
+
+        card.addEventListener("click", function(event) {
+            event.preventDefault();
+            var isShowing = this.classList.contains("show");
+            var cardsContainer = document.querySelector(".cards");
+
+            if (cardsContainer.classList.contains("showing")) {
+                var showingCard = document.querySelector(".card.show");
+                showingCard.classList.remove("show");
+
+                if (isShowing) {
+                    cardsContainer.classList.remove("showing");
+                } else {
+                    this.style.zIndex = zindex;
+                    this.classList.add("show");
+                }
+
+                zindex++;
+            } else {
+                cardsContainer.classList.add("showing");
+                this.style.zIndex = zindex;
+                this.classList.add("show");
+
+                zindex++;
+            }
+        });
+    });
+});
+      </script>
+</head>
+<body>
+
+    <h1>LOGO & BRANDING</h1>
+
+    <div class="cards">
+
+        <div class="card">
+          <div class="card__image-holder">
+            <img class="card__image" src="imageslogobranding/courtibat.webp" alt="courtibat" data-video-url="videos/courtibat.mp4" />
+          </div>
+          <div class="card-title">
+            <a href="#" class="toggle-info btn">
+              <span class="left"></span>
+              <span class="right"></span>
+            </a>
+            <h2>
+                Courtibat
+            </h2>
+          </div>
+          <div class="card-flap flap1">
+            <div class="card-description">
+              Pour la rénovation ou l'aménagement de votre habitat la réponse c'est Courtibat.
+            </div>
+            <div class="card-flap flap2">
+              <div class="card-actions">
+                <a href="https://www.facebook.com/courtibat?locale=fr_FR" class="btn">En savoir plus</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      
+        <div class="card">
+          <div class="card__image-holder">
+            <img class="card__image" src="imageslogobranding/ece.webp" alt="ece" data-video-url="videos/ece.mp4" />
+          </div>
+          <div class="card-title">
+            <a href="#" class="toggle-info btn">
+              <span class="left"></span>
+              <span class="right"></span>
+            </a>
+            <h2>
+                ECE
+            </h2>
+          </div>
+          <div class="card-flap flap1">
+            <div class="card-description">
+              Votre cabinet d'expert comptable, partenaire de votre développement. 
+            </div>
+            <div class="card-flap flap2">
+              <div class="card-actions">
+                <a href="https://www.ece-expertise.fr/" class="btn">En savoir plus</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      
+        <div class="card">
+          <div class="card__image-holder">
+            <img class="card__image" src="imageslogobranding/kabanylan.webp" alt="kabanylan" />
+          </div>
+          <div class="card-title">
+            <a href="https://www.facebook.com/kabanylansnack/?locale=fr_FR" class="toggle-info btn">
+              <span class="left"></span>
+              <span class="right"></span>
+            </a>
+            <h2>
+                kabanylan
+            </h2>
+          </div>
+          <div class="card-flap flap1">
+            <div class="card-description">
+              Restaurant caraibéen 
+            </div>
+            <div class="card-flap flap2">
+              <div class="card-actions">
+                <a href="#" class="btn">En savoir plus</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      
+        <div class="card">
+          <div class="card__image-holder">
+            <img class="card__image" src="imageslogobranding/leboudoir.webp" alt="leboudoir" />
+          </div>
+          <div class="card-title">
+            <a href="#" class="toggle-info btn">
+              <span class="left"></span>
+              <span class="right"></span>
+            </a>
+            <h2>
+                Le Boudoir
+            </h2>
+          </div>
+          <div class="card-flap flap1">
+            <div class="card-description">
+              This grid is an attempt to make something nice that works on touch devices. Ignoring hover states when they're not available etc.
+            </div>
+            <div class="card-flap flap2">
+              <div class="card-actions">
+                <a href="#" class="btn">Read more</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      
+        <div class="card">
+          <div class="card__image-holder">
+            <img class="card__image" src="imageslogobranding/lehamtropical.webp" alt="tropical" />
+          </div>
+          <div class="card-title">
+            <a href="#" class="toggle-info btn">
+              <span class="left"></span>
+              <span class="right"></span>
+            </a>
+            <h2>
+                Le Ham Cosy
+            </h2>
+          </div>
+          <div class="card-flap flap1">
+            <div class="card-description">
+              This grid is an attempt to make something nice that works on touch devices. Ignoring hover states when they're not available etc.
+            </div>
+            <div class="card-flap flap2">
+              <div class="card-actions">
+                <a href="#" class="btn">Read more</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      
+        <div class="card">
+          <div class="card__image-holder">
+            <img class="card__image" src="imageslogobranding/lekwivert.webp" alt="kwivert" />
+          </div>
+          <div class="card-title">
+            <a href="#" class="toggle-info btn">
+              <span class="left"></span>
+              <span class="right"></span>
+            </a>
+            <h2>
+               Le Kwi Vert
+            </h2>
+          </div>
+          <div class="card-flap flap1">
+            <div class="card-description">
+              This grid is an attempt to make something nice that works on touch devices. Ignoring hover states when they're not available etc.
+            </div>
+            <div class="card-flap flap2">
+              <div class="card-actions">
+                <a href="#" class="btn">Read more</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      
+        <div class="card">
+          <div class="card__image-holder">
+            <img class="card__image" src="imageslogobranding/leslunettesdubonheur.webp" alt="lunettes" />
+          </div>
+          <div class="card-title">
+            <a href="#" class="toggle-info btn">
+              <span class="left"></span>
+              <span class="right"></span>
+            </a>
+            <h2>
+                les lunettes du bonheur
+            </h2>
+          </div>
+          <div class="card-flap flap1">
+            <div class="card-description">
+              This grid is an attempt to make something nice that works on touch devices. Ignoring hover states when they're not available etc.
+            </div>
+            <div class="card-flap flap2">
+              <div class="card-actions">
+                <a href="#" class="btn">Read more</a>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="card">
+          <div class="card__image-holder">
+            <img class="card__image" src="imageslogobranding/mediskin.webp" alt="mediskin" />
+          </div>
+          <div class="card-title">
+            <a href="#" class="toggle-info btn">
+              <span class="left"></span>
+              <span class="right"></span>
+            </a>
+            <h2>
+                Mediskin
+            </h2>
+          </div>
+          <div class="card-flap flap1">
+            <div class="card-description">
+              This grid is an attempt to make something nice that works on touch devices. Ignoring hover states when they're not available etc.
+            </div>
+            <div class="card-flap flap2">
+              <div class="card-actions">
+                <a href="#" class="btn">Read more</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      
+        <div class="card">
+          <div class="card__image-holder">
+            <img class="card__image" src="imageslogobranding/pascaline.webp" alt="pascaline" />
+          </div>
+          <div class="card-title">
+            <a href="#" class="toggle-info btn">
+              <span class="left"></span>
+              <span class="right"></span>
+            </a>
+            <h2>
+                Cabinet Pascaline
+            </h2>
+          </div>
+          <div class="card-flap flap1">
+            <div class="card-description">
+              This grid is an attempt to make something nice that works on touch devices. Ignoring hover states when they're not available etc.
+            </div>
+            <div class="card-flap flap2">
+              <div class="card-actions">
+                <a href="#" class="btn">Read more</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      
+      </div>
+      
+      
+    
+</body>
+</html>
