@@ -5,7 +5,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
     cards.forEach(function(card) {
         var imageHolder = card.querySelector(".card__image-holder");
-        var image = card.querySelector(".card__image");
+        var image = card.querySelector(".card__image");   
         var videoURL = image.getAttribute("data-video-url");
         var video = document.createElement("video");
         video.src = videoURL;
@@ -21,7 +21,8 @@ document.addEventListener("DOMContentLoaded", function() {
         card.addEventListener("mouseover", function(event) {
             event.preventDefault();
             image.style.display = "none"; // On cache l'image
-            imageHolder.appendChild(video); // Ajouter la vidéo à la place de l'image
+            imageHolder.appendChild(video);
+             // Ajouter la vidéo à la place de l'image
             video.style.display = "block"; // On affiche la vidéo
             video.play(); // On démarre la lecture de la vidéo automatiquement
         });
